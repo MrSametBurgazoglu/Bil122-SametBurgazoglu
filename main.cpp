@@ -1,6 +1,6 @@
 /*
 *Developer:Samet Burgazoglu
-*Name:main.cpp
+*Name:odev1.cpp
 *Time:25/02/2020
 *Purpose:This software writes triangle, inverted triangle and diamond to console
 */
