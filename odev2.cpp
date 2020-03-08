@@ -25,7 +25,7 @@ class Complex{
 
     explicit Complex(string metin){//metin için constructor
 
-		metin = clean_spaces(metin);//metindeki boşlukları temizle
+	metin = clean_spaces(metin);//metindeki boşlukları temizle
         int uzunluk = metin.length();//metnin uzunluğunu al
         int fp = metin.find("+");//ilk + nın yerini bul
         int fe = metin.find("-");//ilk - nin yerini bul
