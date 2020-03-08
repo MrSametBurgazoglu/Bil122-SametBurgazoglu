@@ -25,6 +25,7 @@ class Complex{
 
     explicit Complex(string metin){
 
+		metin = clean_spaces(metin);
         int uzunluk = metin.length();
         int fp = metin.find("+");
         int fe = metin.find("-");
