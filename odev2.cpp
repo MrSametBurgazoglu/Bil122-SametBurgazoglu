@@ -48,11 +48,8 @@ class Complex{
 			}
 		}
 		else if(fe >= 0 && fe2 == -1  && fp == -1){//içinde sadece 1 tane - var ise
-			cout <<metin<<endl;
 			a = metin.substr(0,fe);
 			b = metin.substr(fe,uzunluk-fe-1);
-			cout <<a<<endl;
-			cout <<b<<endl;
 			if(a == ""){
 				real = 0;
 			}
