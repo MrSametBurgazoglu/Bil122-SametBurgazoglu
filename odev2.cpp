@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -48,11 +49,8 @@ class Complex{
 			}
 		}
 		else if(fe >= 0 && fe2 == -1  && fp == -1){//içinde sadece 1 tane - var ise
-			cout <<metin<<endl;
 			a = metin.substr(0,fe);
 			b = metin.substr(fe,uzunluk-fe-1);
-			cout <<a<<endl;
-			cout <<b<<endl;
 			if(a == ""){
 				real = 0;
 			}
@@ -145,7 +143,52 @@ class Complex{
     }
 
 };
-
+void karmasik_sayi_sirala(vector <Complex> &liste){
+	auto len = liste.size();
+	int a[len][3];
+	int b = 0;
+	int real = liste[0].get_real();
+	int unreal = liste[1].get_unreal();
+	for(int i = 0; i < len; ++i){
+		a[i][0] = i;
+		a[i][1] = liste[i].get_real();
+		a[i][2] = liste[i].get_unreal();
+	}
+	bool tamam;
+	int temp[3];
+	do{
+		tamam = true;
+		for(int i = 0; i < len-1; ++i){
+			if(a[i][1] < a[i+1][1]){
+				temp[0] = a[i][0];
+				temp[1] = a[i][1];
+				temp[2] = a[i][2];
+				a[i][0] = a[i+1][0];
+				a[i][1] = a[i+1][1];
+				a[i][2] = a[i+1][2];
+				a[i+1][0] = temp[0];
+				a[i+1][1] = temp[1];
+				a[i+1][2] = temp[2];
+				tamam = false;
+			}
+			else if(a[i][1] == a[i+1][1] && a[i][2] < a[i+1][2]){
+				temp[0] = a[i][0];
+				temp[1] = a[i][1];
+				temp[2] = a[i][2];
+				a[i][0] = a[i+1][0];
+				a[i][1] = a[i+1][1];
+				a[i][2] = a[i+1][2];
+				a[i+1][0] = temp[0];
+				a[i+1][1] = temp[1];
+				a[i+1][2] = temp[2];
+				tamam = false;
+			}
+		}
+	}while(tamam == false);
+	for(int i = 0; i<len; ++i){
+		liste[a[i][0]].print();
+	}
+}
 int main()
 {
     Complex complex_sayi1;
@@ -162,6 +205,22 @@ int main()
     Complex complex_sayi12("3-i");
     Complex complex_sayi13("-3-i");
     Complex complex_sayi14("-i");
+	
+	vector<Complex> karmasiksayilist;
+	karmasiksayilist.push_back(complex_sayi1);
+	karmasiksayilist.push_back(complex_sayi2);
+	karmasiksayilist.push_back(complex_sayi3);
+	karmasiksayilist.push_back(complex_sayi4);
+	karmasiksayilist.push_back(complex_sayi5);
+	karmasiksayilist.push_back(complex_sayi6);
+	karmasiksayilist.push_back(complex_sayi7);
+	karmasiksayilist.push_back(complex_sayi8);
+	karmasiksayilist.push_back(complex_sayi9);
+	karmasiksayilist.push_back(complex_sayi10);
+	
+	cout << "Siralama basaliyor"<< endl;
+	karmasik_sayi_sirala(karmasiksayilist);
+	cout << "Siralama bitti"<< endl;
 	
     complex_sayi1.print();
     complex_sayi1.set_real(7);
