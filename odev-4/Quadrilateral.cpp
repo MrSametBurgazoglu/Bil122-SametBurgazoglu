@@ -64,19 +64,19 @@ bool Quadrilateral::isValid() const{
 	}
 }
 
-Point Quadrilateral::getA(void){
+Point Quadrilateral::getA(void) const noexcept{
 	return pts[0];
 }
 
-Point Quadrilateral::getB(void){
+Point Quadrilateral::getB(void) const noexcept{
 	return pts[1];
 }
 
-Point Quadrilateral::getC(void){
+Point Quadrilateral::getC(void) const noexcept{
 	return pts[2];
 }
 
-Point Quadrilateral::getD(void){
+Point Quadrilateral::getD(void) const noexcept{
 	return pts[4];
 }
 
@@ -113,8 +113,9 @@ double Quadrilateral::getPerimeter(void) const noexcept{
 	return result;
 }
 	
-double Quadrilateral::printInfo() const noexcept{
+void Quadrilateral::printInfo() const noexcept{
 
+	cout << "Quadrilateral" << endl;
 	cout << "Number of points";
 	cout << this.NUMBER_OF_CORNERS << endl;
 	cout << "Points: ";
