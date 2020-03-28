@@ -7,8 +7,8 @@
 
 using namespace std;
 std::random_device dev;
-std::mt19937 rng(dev())
-std::uniform_int_distribution<std::mt19937::result_type> creator(0,100)
+std::mt19937 rng(dev());
+std::uniform_int_distribution<std::mt19937::result_type> creator(0,100);
 
 // Rastgele olarak Triangle nesneleri olusturur ve parametre olarak verilen vektore ekler.
 /* Triangle nesnelerinde yer alacak noktaların x ve y değerleri [0, 100] arasında olabilir.
