@@ -10,7 +10,7 @@ class Quadrilateral
 {
 public:
 	constexpr static int NUMBER_OF_CORNERS { 4 };
-	enum class Color {RED, BLUE, WHITE, BLACK, GREEN};
+	static enum class Color {RED, BLUE, WHITE, BLACK, GREEN};
 	static const map<Quadrilateral::Color, string> colorToStringMap = { {Quadrilateral::Color::RED, "Red"},
 {Quadrilateral::Color::BLUE, "Blue"},
 {Quadrilateral::Color::WHITE, "White"},
