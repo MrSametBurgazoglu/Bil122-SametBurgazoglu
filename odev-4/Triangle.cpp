@@ -11,7 +11,6 @@ Triangle::Triangle(const Point & a = { 1, 0 }, const Point & b = { 0, 1 }, const
 	this.pts[1] = b;
 	this.pts[2] = c;
 	this.color = color;
-	//TODO: Is_valid ekle
 	if(this.is_valid() == false){
 		throw invalid_argument("Girdiginiz deger hatali");
 	}
