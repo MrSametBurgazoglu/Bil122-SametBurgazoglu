@@ -1,9 +1,14 @@
 #include <iostream>
 #include <vector>
+#include <random>
+#include <stdexcept>
 #include "Triangle.h"
 #include "Quadrilateral.h"
 
 using namespace std;
+std::random_device dev;
+std::mt19937 rng(dev())
+std::uniform_int_distribution<std::mt19937::result_type> creator(0,100)
 
 // Rastgele olarak Triangle nesneleri olusturur ve parametre olarak verilen vektore ekler.
 /* Triangle nesnelerinde yer alacak noktaların x ve y değerleri [0, 100] arasında olabilir.
@@ -11,7 +16,26 @@ using namespace std;
 */
 void fillTriangles(vector<Triangle> &v, int numberOfItems = 100)
 {
-
+	for(int i = 0; i < numberOfItems; ++i){
+		Point p1 = {creator(rng), creator(rng)};
+		Point p2 = {creator(rng), creator(rng)};
+		Point p3 = {creator(rng), creator(rng)};
+		int success = 0;
+		try{
+			int color = creator(rng)%20;
+			auto a = static_cast<Triangle.Color>(color);
+			Triangle triangle(p1, p2, p3, a);
+			v.push_back(triangle);
+			success++;
+		}
+		catch (invalid_argument & e){
+			cerr << "Gecersiz Arguman" << e.what() << endl;
+		}
+		catch (... & e){
+			cerr << "Beklenmeyen bir hata gerceklesti" << e.what() << endl;
+		}
+	}
+	cout << success << " adet ucgen basari ile olusturuldu" << endl;
 }
 
 // Rastgele olarak Quadrilateral nesneleri olusturur ve parametre olarak verilen vektore ekler.
@@ -20,7 +44,27 @@ void fillTriangles(vector<Triangle> &v, int numberOfItems = 100)
 */
 void fillQuads(vector<Quadrilateral> &v, int numberOfItems = 100)
 {
-
+	for(int i = 0; i < numberOfItems; ++i){
+		Point p1 = {creator(rng), creator(rng)};
+		Point p2 = {creator(rng), creator(rng)};
+		Point p3 = {creator(rng), creator(rng)};
+		Point p4 = {creator(rng), creator(rng)};
+		int success = 0;
+		try{
+			int color = creator(rng)%20;
+			auto a = static_cast<Quadrilateral.Color>(color);
+			Quadrilateral quadrilateral(p1, p2, p3, a);
+			v.push_back(quadrilateral);
+			success++;
+		}
+		catch (invalid_argument & e){
+			cerr << "Gecersiz Arguman" << e.what() << endl;
+		}
+		catch (... & e){
+			cerr << "Beklenmeyen bir hata gerceklesti" << e.what() << endl;
+		}
+	}
+	cout << success << " adet dikdortgen basari ile olusturuldu" << endl;
 }
 
 
@@ -29,14 +73,41 @@ Eleman bulunamazsa -1 döndürülür.*/
 template<class T>
 int search(const vector<T> &v, const T & key)
 {
-
+	auto perimeter = key.getPerimeter();
+	key.Color color = key.getColor()
+	int index = 0;
+	for(const auto eleman : v){
+		eleman.Color color2 = eleman.getColor()
+		if(auto eleman.getPerimeter() == perimeter && color == color2){
+			return index;
+		}
+		index++;
+	}
 }
 
 
 template<class T>
-int sortByPerimeter(vector<T> &v)
+int sortByPerimeter(const vector<T> &v)
 {
-
+	auto temp2 = vector<T>{}; 
+	copy(v.begin(), v.end(), back_inserter(temp2)); 
+	auto liste = vector<T>{};
+	T temp;
+	auto max_premiter = 0.0;
+	int index = 0;
+	int lindex = 0;
+	for(int i = 0; i < v.size(); ++i){
+		for(const auto eleman: temp2){
+			auto perimeter = eleman.getPerimeter();
+			if(perimeter > max_perimeter){
+				temp = eleman;
+				lindex = index;
+			}
+			index++;
+		}
+		temp2.erase(temp2.begin()+lindex);
+		liste.push_back(temp);
+	}
 }
 
 int main()
