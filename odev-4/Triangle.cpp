@@ -12,18 +12,27 @@ Triangle::Triangle(const Point & a = { 1, 0 }, const Point & b = { 0, 1 }, const
 	this.pts[2] = c;
 	this.color = color;
 	//TODO: Is_valid ekle
+	if(this.is_valid() == false){
+		throw invalid_argument("Girdiginiz deger hatali");
+	}
 }
 Triangle::Triangle(const vector<Point> & pts, const Color & color = Color::RED){
 	this.pts[0] = pts[0];
 	this.pts[1] = pts[1];
 	this.pts[2] = pts[2];
 	this.color = color;
+	if(this.is_valid() == false){
+		throw invalid_argument("Girdiginiz deger hatali");
+	}
 }
 Triangle::Triangle(const array<Point, NUMBER_OF_CORNERS> & pts, const Color & color = Color::RED){
 	this.pts[0] = pts[0];
 	this.pts[1] = pts[1];
 	this.pts[2] = pts[2];
 	this.color = color;
+	if(this.is_valid() == false){
+		throw invalid_argument("Girdiginiz deger hatali");
+	}
 }
 
 Point Triangle::getA(void) const noexcept{
@@ -66,9 +75,18 @@ double Triangle::getPerimeter(void) const noexcept{
 	return result;
 }
 
-double Quadrilateral::printInfo() const noexcept{
+bool Triangle::is_valid() const noexcept{
+	int egim1 = (this.pts[0].x - this.pts[1].x) / (this.pts[0].y - this.pts[1].y);
+	int egim2 = (this.pts[1].x - this.pts[2].x) / (this.pts[1].y - this.pts[2].y);
+	if(egim1 == egim2){
+		return false;
+	}
+	return true;
+}
 
-	cout << "Quadrilateral" << endl;
+void Triangle::printInfo() const noexcept{
+
+	cout << "Triangle" << endl;
 	cout << "Number of points";
 	cout << this.NUMBER_OF_CORNERS << endl;
 	cout << "Points: ";
